@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions  
+
+name: Java CI with Gradle  
+
+on:  
+  push:  
+    branches:  
+      - main  # Adjust this based on your default branch  
+  pull_request:  
+    branches:  
+      - main  # Adjust this based on your default branch  
+
+jobs:  
+  build:  
+
+    runs-on: ubuntu-latest  # Choose the OS where the job will run  
+    
+    steps:  
+      # Check out the repository  
+      - name: Checkout code  
+        uses: actions/checkout@v2  
+
+      # Set up JDK  
+      - name: Set up JDK  
+        uses: actions/setup-java@v2  
+        with:  
+          java-version: '11'  # Specify the Java version you want to use  
+          distribution: 'adopt'  
+
+      # Build with Gradle  
+      - name: Build with Gradle  
+        run: ./gradlew build  # Use ./gradlew.bat for Windows if needed  
+
+      # Run tests (optional)  
+      - name: Run tests  
+        run: ./gradlew test  # Again, use ./gradlew.bat for Windows
